@@ -49,7 +49,7 @@ function Layout(props) {
         <Navbar />
         <div className="row flex-nowrap">
           <Sidebar />
-          <div className="col px-3 py-3 me-3">{props.children}</div>
+          <div className="col px-3 py-3 me-3 pb-5 mb-5">{props.children}</div>
         </div>
         <Footer />
       </div>

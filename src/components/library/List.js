@@ -1,10 +1,14 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import Layout from "../nav/Layout";
 
 function List() {
+  const navigate = useNavigate();
+
   const search = async (e) => {
     e.preventDefault();
-    console.log("search");
+    const q = e.target[0].value;
+    navigate("/library/search", { state: { q: q } });
   };
   return (
     <Layout>

@@ -15,8 +15,9 @@ axios.interceptors.response.use(
     return response;
   },
   async (error) => {
-    console.log(localStorage.getItem("access"));
-    console.log(error);
+    if (error.code === "ERR_CANCELED") {
+      return Promise.reject(error);
+    }
     if (
       error.response.status === 401 &&
       !refresh &&
@@ -34,7 +35,10 @@ axios.interceptors.response.use(
         axios.defaults.headers.common[
           "Authorization"
         ] = `Bearer ${localStorage.getItem("access")}`;
-
+        // const config = error.config;
+        // return new Promise((resolve) => {
+        //   resolve(axios(config));
+        // });
         return axios(error.config);
       }
     }
